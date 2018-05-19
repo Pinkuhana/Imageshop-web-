@@ -69,6 +69,35 @@
             cursor: pointer;
             box-shadow: gray 1px 1px inset;
         }
+        #dither{
+            position: absolute;
+            width: 140px;
+            height: 80px;
+            left: 4px;
+            top: 340px;
+            border: gray 1px solid;
+            background-color: white;
+            border-radius: 5px;
+            display: none;
+        }
+        .smallButton{
+            position: absolute;
+            height: 60px;
+            width: 40px;
+            top: 9px;
+            right: 10px;
+            border: gray 1px solid;
+            border-radius: 5px;
+            color: aqua;
+            cursor: pointer;
+            padding: 0;
+        }
+        .dither{
+            position: absolute;
+            width: 60px;
+            height: 25px;
+            left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -82,16 +111,38 @@
     <button id="gTransform" class="button">G分量</button>
     <button id="bTransform" class="button">B分量</button>
     <button id="histogramEqualization" class="button">均衡化</button>
+    <button id="complement" class="button">补图</button>
+    <button id="dither1" class="button">Dither</button>
     <button id="return" class="button">还原</button>
+    <div id="dither">
+        <select class="dither" style="top: 9px;" id="ditherMatrix">
+            <option>2</option>
+            <option>4</option>
+            <option>8</option>
+        </select>
+        <input type="checkbox" class="dither" style="top: 40px;left: 5px" id="ordered">
+        <div class="dither" style="top: 48px;left: 20px;color: aqua;font-size: 14px">Ordered</div>
+        <button id="binary"  class="smallButton">Dither</button>
+    </div>
     <input type="text" class="smallBox" id="query">
     <div class="monitor" id="monitor"></div>
     <button class="monitor" id="find">查询</button>
 </div>
 <canvas id="canvas" style="margin-left: 150px"></canvas>
+<canvas id="canvas1" style="margin-left: 150px"></canvas>
 
 
 
-
+<script>
+    var judge = false;
+    document.getElementById("dither1").addEventListener("click", function () {
+        judge = !judge;
+        if (judge)
+            document.getElementById("dither").style.display = "block";
+        else
+            document.getElementById("dither").style.display = "none";
+    });
+</script>
 <script src="js/Imageshop.js"></script>
 </body>
 </html>
